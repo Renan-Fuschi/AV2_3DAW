@@ -1,0 +1,126 @@
+/* Estilo Geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fce4d4; /* Cor de fundo similar ao tom pastel */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container principal */
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+}
+
+/* Botão de voltar */
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #5a3628; /* Marrom escuro */
+}
+
+/* Caixa do formulário */
+.promo-box {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+}
+
+.promo-box h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #5a3628; /* Marrom escuro */
+}
+
+.search-form label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+    color: #5a3628; /* Marrom escuro */
+}
+
+.search-form input,
+.search-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.submit-button {
+    width: 100%;
+    background-color: #a93d2e; /* Vermelho terroso */
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #8c3227; /* Vermelho mais escuro */
+}
+
+.promo-section {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.promo-section h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #a93d2e; /* Vermelho terroso */
+}
+
+.promo-section ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.promo-section ul li {
+    margin-bottom: 10px;
+    color: #5a3628; /* Marrom escuro */
+}
+
+.promo-section .price {
+    color: #a93d2e; /* Vermelho terroso */
+    font-weight: bold;
+}
+
+.footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.footer .payment-options img,
+.footer .social-media img {
+    margin: 10px;
+    height: 30px;
+}
+
+.footer p {
+    margin-top: 10px;
+    color: #5a3628; /* Marrom escuro */
+}
