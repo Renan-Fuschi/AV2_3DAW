@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagamento - Viação Calango</title>
+  <link rel="stylesheet" href="pagamento.css">
+</head>
+<body>
+  <header>
+    <div class="header-logo">
+      <h1>VIAÇÃO CALANGO</h1>
+    </div>
+    <div class="header-info">
+      <p>Rio de Janeiro, RJ → Arraial do Cabo, RJ | 2 Passageiros | Ida: 05/07/2023</p>
+      <button class="alterar-busca">Alterar Busca</button>
+    </div>
+  </header>
+
+  <main>
+    <nav class="progress-bar">
+      <span>Escolher Passagens</span>
+      <span>→</span>
+      <span>Escolher Assento</span>
+      <span>→</span>
+      <span>Identificação</span>
+      <span>→</span>
+      <span class="active">Pagamento</span>
+      <span>→</span>
+      <span>Compra Finalizada</span>
+    </nav>
+
+    <section class="pagamento">
+      <h2>Qual será o método de pagamento?</h2>
+      <div class="metodos-pagamento">
+        <div class="metodo" onclick="selecionarPagamento('cartao')">
+          <img src="cartao.png" alt="Pagamento em Cartão">
+          <p>Pagamento em Cartão</p>
+        </div>
+        <div class="metodo" onclick="selecionarPagamento('pix')">
+          <img src="pix.png" alt="PIX">
+          <p>PIX</p>
+        </div>
+        <div class="metodo" onclick="selecionarPagamento('boleto')">
+          <img src="boleto.png" alt="Boleto">
+          <p>Boleto</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="pagamento-info">
+      <p>Pagamento:</p>
+      <img src="visa.png" alt="Visa">
+      <img src="mastercard.png" alt="MasterCard">
+      <img src="amex.png" alt="American Express">
+      <img src="diners.png" alt="Diners Club">
+    </div>
+    <div class="contato">
+      <p>Atendimento: (21) 98547-7691</p>
+      <p>WhatsApp: (21) 98744-8523</p>
+    </div>
+    <div class="seguranca">
+      <p>Compra 100% segura</p>
+      <img src="cadastur.png" alt="Cadastur">
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
