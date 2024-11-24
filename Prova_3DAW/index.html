@@ -1,32 +1,98 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viação Calango</title>
-    <link rel="stylesheet" href="estiloIndex.css">
+    <link rel="stylesheet" href="estilo_index.css">
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="logo">
-                <img src="imagens.png/oni" alt="Logo Viação Calango">
-            </div>
-            </div>
-        </header>
-        
-        <div class="Nomes">
-            <h2>Projetado Por:</h2>
-            <ul>
-                <li>Renan Fuschi</li>
-                <li>Augusto Macedo</li>
-            </ul>
+    <header>
+        <nav>
+            <a href="pag_login.html">Cadastrar/Login</a>
+            <img src="imagens.png/calango.png" alt="Logo da Viação Calango">
+            <button>≡</button> </nav>
+    </header>
+    <main>
+        <div class="container">
+            <h1>Sua jornada começa aqui</h1>
+            <form method="post">
+                <label for="partida">Ponto de partida:</label>
+                <input type="text" id="partida" name="partida" required>
+
+                <label for="destino">Destino da viagem:</label>
+                <input type="text" id="destino" name="destino" required>
+
+                <label for="data_ida">Data de ida:</label>
+                <input type="date" id="data_ida" name="data_ida" required>
+
+                <label for="data_volta">Data de volta:</label>
+                <input type="date" id="data_volta" name="data_volta" required>   
+
+
+                <button type="submit">Comprar passagem</button>
+            </form>
         </div>
 
-        <div class="botoes_escolha">
-            <button class="btn" onclick="window.location.href='Pag_Cliente.html'">Clientes</button>
-            <button class="btn" onclick="window.location.href='pag_adm.php'">Funcionários</button>
-        </div>
+        <section class="card-section">
+    <div class="card">
+        <img src="./imagens/Salvador.png" alt="Salvador">
+        <h2>De: São Paulo</h2>
+        <h2>Para: Salvador</h2>
+        <p>A partir de: R$ 84,90</p>
+        <button>Comprar passagem</button>
     </div>
+        </section>
+
+        <section class="card-section">
+            <div class="card">
+                <img src="./imagens/Foz_do_Iguaçu.png" alt="Foz do Iguaçu" width="50%">
+                <h2>De: Sergipe</h2>
+                <h2>Para: Foz do Iguaçu</h2>
+                <p>A partir de: R$ 79,90</p>
+                <button>Comprar passagem</button>
+            </div>
+            <div class="card">
+                </div>
+            <div class="card">
+                </div>
+                </section>
+
+         <section class="card-section">
+            <div class="card">
+               <img src="./imagens/Rio_de_Janeiro.png" alt="Rio">
+               <h2>De: São Paulo</h2>
+               <h2>Para: Rio de Janeiro</h2>
+               <p>A partir de: R$ 59,90</p>
+               <button>Comprar passagem</button>
+              </div>
+            <div class="card">
+           </div>
+            <div class="card">
+            </div>
+            </section>   
+    </main>
+
+    <footer>
+        <div class="container-footer">
+            <div class="logo">
+                <img src="imagens.png/calango.png" alt="Logo da Viação Calango">
+            </div>
+            <div class="payment">
+                <img src="imagens.png/bandeira-cartoes.png" alt="PayMee">
+                <img src="imagens.png/pix.png" alt="PIX">
+            </div>
+            <div class="contact">
+                <h2>Fale Conosco</h2>
+                <p>Qualquer Duvida é só ligar para (21) 96454-8559</p>
+                <p>Cancelamento ou mais informações: (21) 0800-312-7593</p>
+                <a href="https://www.instagram.com/viacaocalango/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/viacaocalango/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Viação Calango. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
