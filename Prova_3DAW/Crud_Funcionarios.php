@@ -9,33 +9,54 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Erro de conexão: " . $conn->connect_error);
 }
+$conn->set_charset("utf8mb4");
 
-// Operações AJAX (para evitar recarregamento da página)
+// Operações AJAX
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $action = $_POST['action'];
 
     if ($action === 'create') {
-        $nome = $_POST['nome'];
         $codigo = $_POST['codigo'];
-        $funcao = $_POST['funcao'];
-        $sql = "INSERT INTO funcionarios (nome, codigo, funcao) VALUES ('$nome', '$codigo', '$funcao')";
-        $conn->query($sql);
-        echo json_encode(["status" => "success", "message" => "Funcionário adicionado com sucesso!"]);
+        $nome = $_POST['nome'];
+        $cargo = $_POST['cargo'];
+        $salario = $_POST['salario'];
+
+        $stmt = $conn->prepare("INSERT INTO funcionarios (codigo, nome, cargo, salario) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("sssd", $codigo, $nome, $cargo, $salario);
+
+        if ($stmt->execute()) {
+            echo json_encode(["status" => "success", "message" => "Funcionário adicionado com sucesso!"]);
+        } else {
+            echo json_encode(["status" => "error", "message" => "Erro ao adicionar funcionário."]);
+        }
         exit;
     } elseif ($action === 'update') {
         $id = $_POST['id'];
-        $nome = $_POST['nome'];
         $codigo = $_POST['codigo'];
-        $funcao = $_POST['funcao'];
-        $sql = "UPDATE funcionarios SET nome='$nome', codigo='$codigo', funcao='$funcao' WHERE id=$id";
-        $conn->query($sql);
-        echo json_encode(["status" => "success", "message" => "Funcionário atualizado com sucesso!"]);
+        $nome = $_POST['nome'];
+        $cargo = $_POST['cargo'];
+        $salario = $_POST['salario'];
+
+        $stmt = $conn->prepare("UPDATE funcionarios SET codigo = ?, nome = ?, cargo = ?, salario = ? WHERE id = ?");
+        $stmt->bind_param("sssdi", $codigo, $nome, $cargo, $salario, $id);
+
+        if ($stmt->execute()) {
+            echo json_encode(["status" => "success", "message" => "Funcionário atualizado com sucesso!"]);
+        } else {
+            echo json_encode(["status" => "error", "message" => "Erro ao atualizar funcionário."]);
+        }
         exit;
     } elseif ($action === 'delete') {
         $id = $_POST['id'];
-        $sql = "DELETE FROM funcionarios WHERE id=$id";
-        $conn->query($sql);
-        echo json_encode(["status" => "success", "message" => "Funcionário excluído com sucesso!"]);
+
+        $stmt = $conn->prepare("DELETE FROM funcionarios WHERE id = ?");
+        $stmt->bind_param("i", $id);
+
+        if ($stmt->execute()) {
+            echo json_encode(["status" => "success", "message" => "Funcionário excluído com sucesso!"]);
+        } else {
+            echo json_encode(["status" => "error", "message" => "Erro ao excluir funcionário."]);
+        }
         exit;
     }
 }
@@ -56,17 +77,19 @@ $result = $conn->query("SELECT * FROM funcionarios");
 <body>
     <h2>Gerenciar Funcionários</h2>
     <form id="create-form">
-        <input type="text" id="nome" placeholder="Nome do funcionário" required>
         <input type="text" id="codigo" placeholder="Código do funcionário" required>
-        <input type="text" id="funcao" placeholder="Função" required>
+        <input type="text" id="nome" placeholder="Nome do funcionário" required>
+        <input type="text" id="cargo" placeholder="Cargo" required>
+        <input type="number" id="salario" placeholder="Salário" required step="0.01">
         <button type="submit">Adicionar</button>
     </form>
     <ul id="funcionarios-list">
         <?php while ($row = $result->fetch_assoc()): ?>
             <li data-id="<?php echo $row['id']; ?>">
-                <span class="nome"><?php echo $row['nome']; ?></span> -
                 <span class="codigo"><?php echo $row['codigo']; ?></span> -
-                <span class="funcao"><?php echo $row['funcao']; ?></span>
+                <span class="nome"><?php echo $row['nome']; ?></span> -
+                <span class="cargo"><?php echo $row['cargo']; ?></span> -
+                <span class="salario">R$ <?php echo number_format($row['salario'], 2, ',', '.'); ?></span>
                 <button class="edit-btn">Editar</button>
                 <button class="delete-btn">Excluir</button>
             </li>
@@ -78,15 +101,17 @@ $result = $conn->query("SELECT * FROM funcionarios");
             // Criar novo funcionário
             $("#create-form").submit(function(event) {
                 event.preventDefault();
-                const nome = $("#nome").val();
                 const codigo = $("#codigo").val();
-                const funcao = $("#funcao").val();
+                const nome = $("#nome").val();
+                const cargo = $("#cargo").val();
+                const salario = $("#salario").val();
 
-                $.post("crudFunc.php", {
+                $.post("Crud_Funcionarios.php", {
                     action: "create",
-                    nome: nome,
                     codigo: codigo,
-                    funcao: funcao
+                    nome: nome,
+                    cargo: cargo,
+                    salario: salario
                 }, function(response) {
                     const data = JSON.parse(response);
                     alert(data.message);
@@ -100,17 +125,19 @@ $result = $conn->query("SELECT * FROM funcionarios");
             $(".edit-btn").click(function() {
                 const li = $(this).closest("li");
                 const id = li.data("id");
-                const nome = prompt("Nome:", li.find(".nome").text());
-                const codigo = prompt("Código:", li.find(".codigo").text());
-                const funcao = prompt("Função:", li.find(".funcao").text());
+                const codigo = prompt("Código do funcionário:", li.find(".codigo").text());
+                const nome = prompt("Nome do funcionário:", li.find(".nome").text());
+                const cargo = prompt("Cargo:", li.find(".cargo").text());
+                const salario = prompt("Salário:", li.find(".salario").text().replace("R$ ", "").replace(",", "."));
 
-                if (nome && codigo && funcao) {
-                    $.post("crudFunc.php", {
+                if (codigo && nome && cargo && salario) {
+                    $.post("Crud_Funcionarios.php", {
                         action: "update",
                         id: id,
-                        nome: nome,
                         codigo: codigo,
-                        funcao: funcao
+                        nome: nome,
+                        cargo: cargo,
+                        salario: salario
                     }, function(response) {
                         const data = JSON.parse(response);
                         alert(data.message);
@@ -127,7 +154,7 @@ $result = $conn->query("SELECT * FROM funcionarios");
                     const li = $(this).closest("li");
                     const id = li.data("id");
 
-                    $.post("crudFunc.php", {
+                    $.post("Crud_Funcionarios.php", {
                         action: "delete",
                         id: id
                     }, function(response) {

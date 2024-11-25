@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha seu Assento - Viação Calango</title>
+    <link rel="stylesheet" href="estilo_assento.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="pag_cliente.html"><img style="width: 100px" src="./imagens/Icone-usuario-Png.webp" alt="Imagem Cliente"></a>
+            <button>≡</button>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Escolha seu assento</h1>
+            <div class="seats">
+                <!-- Gerar assentos dinamicamente -->
+                <div class="row">
+                    <button class="seat" data-assento="1A">1A</button>
+                    <button class="seat" data-assento="1B">1B</button>
+                    <button class="seat" data-assento="1C">1C</button>
+                    <button class="seat" data-assento="1D">1D</button>
+                </div>
+                <div class="row">
+                    <button class="seat" data-assento="2A">2A</button>
+                    <button class="seat" data-assento="2B">2B</button>
+                    <button class="seat" data-assento="2C">2C</button>
+                    <button class="seat" data-assento="2D">2D</button>
+                </div>
+                <div class="row">
+                    <button class="seat" data-assento="3A">3A</button>
+                    <button class="seat" data-assento="3B">3B</button>
+                    <button class="seat" data-assento="3C">3C</button>
+                    <button class="seat" data-assento="3D">3D</button>
+                </div>
+                <div class="row">
+                    <button class="seat" data-assento="3A">4A</button>
+                    <button class="seat" data-assento="3B">4B</button>
+                    <button class="seat" data-assento="3C">4C</button>
+                    <button class="seat" data-assento="3D">4D</button>
+                </div>
+                <!-- Adicione mais linhas conforme necessário -->
+            </div>
+
+            <div class="selected-seat">
+                <p>Assento selecionado: <span id="assento-selecionado">Nenhum</span></p>
+            </div>
+
+            <button onclick="window.location.href='pag_pagamento.html'" id="prosseguir" disabled>Prosseguir com a compra</button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container-footer">
+            <div class="logo">
+                <img src="imagens.png/calango.png" alt="Logo da Viação Calango">
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            // Seleção de assento
+            $(".seat").click(function() {
+                $(".seat").removeClass("selected"); // Remove seleção de todos os assentos
+                $(this).addClass("selected"); // Marca o assento como selecionado
+                const assento = $(this).data("assento");
+                $("#assento-selecionado").text(assento); // Atualiza o texto com o assento escolhido
+                $("#prosseguir").prop("disabled", false); // Habilita o botão de prosseguir
+            });
+
+            // Ação para o botão de prosseguir
+            $("#prosseguir").click(function() {
+                // Aqui você pode redirecionar para a página de pagamento ou confirmação
+                alert("Você selecionou o assento " + $("#assento-selecionado").text() + ". Prosseguindo com a compra.");
+                window.location.href = "pag_pagamento.html"; // Redireciona para a página de confirmação
+            });
+        });
+    </script>
+</body>
+</html>

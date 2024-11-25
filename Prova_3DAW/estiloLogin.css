@@ -1,18 +1,13 @@
 body {
-    margin: 0;
-    padding: 0;
     font-family: 'Arial', sans-serif;
     background-color: #e5d0c1; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
 
 .container {
     text-align: center;
     width: 90%;
     max-width: 600px;
+    height: 700px;
 }
 
 .header {
@@ -62,8 +57,12 @@ body {
 
 .botoes_escolha {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: 20px;
+    text-align: center;
+    align-items: center;
+    height: 100vh;
+    padding-left: 700px;
 }
 
 .btn {
@@ -73,9 +72,10 @@ body {
     border: none;
     padding: 15px;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 50px;
     font-weight: bold;
     cursor: pointer;
+    align-items: center;
 }
 
 .btn:hover {

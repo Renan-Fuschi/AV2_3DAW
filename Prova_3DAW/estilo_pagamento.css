@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+header nav {
+    background-color: #693a24;
+    padding: 10px;
+    text-align: center;
+}
+
+header nav button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+}
+
+main .container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #693a24;
+}
+
+.payment-option {
+    margin-bottom: 10px;
+}
+
+.payment-option input {
+    margin-right: 10px;
+}
+
+.payment-info {
+    display: none;
+    margin-top: 20px;
+}
+
+#finalizar-compra {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #693a24;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#finalizar-compra:disabled {
+    background-color: #d1d1d1;
+    cursor: not-allowed;
+}
+
+footer {
+    background-color: #693a24;
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+footer .container-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer .container-footer .logo img {
+    width: 150px;
+}

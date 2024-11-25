@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento - Viação Calango</title>
+    <link rel="stylesheet" href="estilo_pagamento.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="pag_cliente.html"><img style="width: 100px" src="./imagens/Icone-usuario-Png.webp" alt="Imagem Cliente"></a>
+            <button>≡</button>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Escolha a forma de pagamento</h1>
+            <form id="payment-form">
+                <div class="payment-option">
+                    <input type="radio" id="cartao" name="pagamento" value="cartao" checked>
+                    <label for="cartao">Cartão de Crédito/Débito</label>
+                </div>
+                <div class="payment-option">
+                    <input type="radio" id="pix" name="pagamento" value="pix">
+                    <label for="pix">PIX</label>
+                </div>
+                <div class="payment-option">
+                    <input type="radio" id="boleto" name="pagamento" value="boleto">
+                    <label for="boleto">Boleto Bancário</label>
+                </div>
+
+                <!-- Formulário de pagamento via cartão -->
+                <div id="cartao-info" class="payment-info">
+                    <label for="numero-cartao">Número do Cartão:</label>
+                    <input type="text" id="numero-cartao" name="numero-cartao" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+
+                    <label for="vencimento">Data de Vencimento:</label>
+                    <input type="month" id="vencimento" name="vencimento" required>
+
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" name="cvv" placeholder="XXX" required>
+                </div>
+
+                <!-- Formulário de pagamento via PIX -->
+                <div id="pix-info" class="payment-info">
+                    <p>Para pagar via PIX, escaneie o QR Code abaixo:</p>
+                    <img src="./imagens/pix.png" alt="QR Code PIX" width="200">
+                </div>
+
+                <!-- Formulário de pagamento via boleto -->
+                <div id="boleto-info" class="payment-info">
+                    <p>Para pagar via boleto, clique no botão abaixo para gerar seu boleto:</p>
+                    <button type="button" id="gerar-boleto">Gerar Boleto</button>
+                </div>
+
+                <button type="submit" id="finalizar-compra" disabled>Finalizar Compra</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container-footer">
+            <div class="logo">
+                <img src="imagens.png/calango.png" alt="Logo da Viação Calango">
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            // Mostra/esconde os campos conforme a escolha do pagamento
+            $("input[name='pagamento']").change(function() {
+                const paymentMethod = $("input[name='pagamento']:checked").val();
+                $(".payment-info").hide();
+                if (paymentMethod === "cartao") {
+                    $("#cartao-info").show();
+                } else if (paymentMethod === "pix") {
+                    $("#pix-info").show();
+                } else if (paymentMethod === "boleto") {
+                    $("#boleto-info").show();
+                }
+                $("#finalizar-compra").prop("disabled", false);
+            });
+
+            // Ao clicar em "Gerar Boleto"
+            $("#gerar-boleto").click(function() {
+                alert("Boleto gerado com sucesso! Você pode imprimir ou pagar diretamente no banco.");
+            });
+
+            // Finalizar a compra (simulação de envio do formulário)
+            $("#payment-form").submit(function(event) {
+                event.preventDefault();
+                const paymentMethod = $("input[name='pagamento']:checked").val();
+                let paymentDetails = {};
+
+                if (paymentMethod === "cartao") {
+                    paymentDetails = {
+                        metodo: "Cartão de Crédito/Débito",
+                        numero_cartao: $("#numero-cartao").val(),
+                        vencimento: $("#vencimento").val(),
+                        cvv: $("#cvv").val()
+                    };
+                } else if (paymentMethod === "pix") {
+                    paymentDetails = {
+                        metodo: "PIX",
+                        qr_code: "imagens/qr_code_pix.png"
+                    };
+                } else if (paymentMethod === "boleto") {
+                    paymentDetails = {
+                        metodo: "Boleto Bancário",
+                        boleto_url: "https://www.boleto.com/gerar"
+                    };
+                }
+
+                console.log("Compra finalizada com sucesso!");
+                console.log(paymentDetails);
+                alert("Compra finalizada com sucesso! Detalhes do pagamento foram registrados.");
+                window.location.href = "pag_confirmacao_compra.html";
+            });
+        });
+    </script>
+</body>
+</html>

@@ -9,6 +9,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Erro de conexão: " . $conn->connect_error);
 }
+$conn->set_charset("utf8mb4");
 
 // Operações AJAX
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -16,24 +17,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($action === 'create') {
         $numero = $_POST['numero'];
-        $estado = $_POST['estado'];
-        $sql = "INSERT INTO onibus (numero, estado) VALUES ('$numero', '$estado')";
-        $conn->query($sql);
-        echo json_encode(["status" => "success", "message" => "Ônibus adicionado com sucesso!"]);
+        $estado = $_POST['estado_atual'];
+
+        $stmt = $conn->prepare("INSERT INTO onibus (numero, estado_atual) VALUES (?, ?)");
+        $stmt->bind_param("ss", $numero, $estado);
+
+        if ($stmt->execute()) {
+            echo json_encode(["status" => "success", "message" => "Ônibus adicionado com sucesso!"]);
+        } else {
+            echo json_encode(["status" => "error", "message" => "Erro ao adicionar ônibus."]);
+        }
         exit;
     } elseif ($action === 'update') {
         $id = $_POST['id'];
         $numero = $_POST['numero'];
-        $estado = $_POST['estado'];
-        $sql = "UPDATE onibus SET numero='$numero', estado='$estado' WHERE id=$id";
-        $conn->query($sql);
-        echo json_encode(["status" => "success", "message" => "Ônibus atualizado com sucesso!"]);
+        $estado = $_POST['estado_atual'];
+
+        $stmt = $conn->prepare("UPDATE onibus SET numero = ?, estado_atual = ? WHERE id = ?");
+        $stmt->bind_param("ssi", $numero, $estado, $id);
+
+        if ($stmt->execute()) {
+            echo json_encode(["status" => "success", "message" => "Ônibus atualizado com sucesso!"]);
+        } else {
+            echo json_encode(["status" => "error", "message" => "Erro ao atualizar ônibus."]);
+        }
         exit;
     } elseif ($action === 'delete') {
         $id = $_POST['id'];
-        $sql = "DELETE FROM onibus WHERE id=$id";
-        $conn->query($sql);
-        echo json_encode(["status" => "success", "message" => "Ônibus excluído com sucesso!"]);
+
+        $stmt = $conn->prepare("DELETE FROM onibus WHERE id = ?");
+        $stmt->bind_param("i", $id);
+
+        if ($stmt->execute()) {
+            echo json_encode(["status" => "success", "message" => "Ônibus excluído com sucesso!"]);
+        } else {
+            echo json_encode(["status" => "error", "message" => "Erro ao excluir ônibus."]);
+        }
         exit;
     }
 }
@@ -55,14 +74,14 @@ $result = $conn->query("SELECT * FROM onibus");
     <h2>Gerenciar Ônibus</h2>
     <form id="create-form">
         <input type="text" id="numero" placeholder="Número do ônibus" required>
-        <input type="text" id="estado" placeholder="Estado atual" required>
+        <input type="text" id="estado_atual" placeholder="Estado atual" required>
         <button type="submit">Adicionar</button>
     </form>
     <ul id="onibus-list">
         <?php while ($row = $result->fetch_assoc()): ?>
             <li data-id="<?php echo $row['id']; ?>">
                 <span class="numero"><?php echo $row['numero']; ?></span> -
-                <span class="estado"><?php echo $row['estado']; ?></span>
+                <span class="estado"><?php echo $row['estado_atual']; ?></span>
                 <button class="edit-btn">Editar</button>
                 <button class="delete-btn">Excluir</button>
             </li>
@@ -75,12 +94,12 @@ $result = $conn->query("SELECT * FROM onibus");
             $("#create-form").submit(function(event) {
                 event.preventDefault();
                 const numero = $("#numero").val();
-                const estado = $("#estado").val();
+                const estado = $("#estado_atual").val();
 
                 $.post("Crud_Onibus.php", {
                     action: "create",
                     numero: numero,
-                    estado: estado
+                    estado_atual: estado
                 }, function(response) {
                     const data = JSON.parse(response);
                     alert(data.message);
@@ -102,7 +121,7 @@ $result = $conn->query("SELECT * FROM onibus");
                         action: "update",
                         id: id,
                         numero: numero,
-                        estado: estado
+                        estado_atual: estado
                     }, function(response) {
                         const data = JSON.parse(response);
                         alert(data.message);
