@@ -5,89 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viação Calango</title>
     <link rel="stylesheet" href="estilo_index.css">
+   
 </head>
 <body>
     <header>
         <nav>
             <a href="pag_login.html">Cadastrar/Login</a>
-            <img style = "width:40px;" src="./imagens/calango.png" alt="Logo da Viação Calango">
-            <button>≡</button> </nav>
+            <img src="./imagens/calango.png" alt="Logo da Viação Calango" style="width:40px;">
+        </nav>
+        <button>≡</button>
     </header>
+
     <main>
+        <!-- Formulário -->
         <div class="container">
             <h1>Sua jornada começa aqui</h1>
             <form method="post">
                 <label for="partida">Ponto de partida:</label>
                 <input type="text" id="partida" name="partida" required>
-
+    
                 <label for="destino">Destino da viagem:</label>
                 <input type="text" id="destino" name="destino" required>
-
+    
                 <label for="data_ida">Data de ida:</label>
                 <input type="date" id="data_ida" name="data_ida" required>
-
+    
                 <label for="data_volta">Data de volta:</label>
-                <input type="date" id="data_volta" name="data_volta" required>   
-
-
+                <input type="date" id="data_volta" name="data_volta" required>
+    
                 <button type="submit" onclick="window.location.href='pag_login.html'">Comprar passagem</button>
-
             </form>
         </div>
 
-        <section class="card-section">
-    <div class="card">
-        <img src="./imagens/Salvador.png" alt="Salvador">
-        <h2>De: São Paulo</h2>
-        <h2>Para: Salvador</h2>
-        <p>A partir de: R$ 84,90</p>
-        <button type="submit" onclick="window.location.href='pag_login.html'">Comprar passagem</button>
-
-    </div>
-        </section>
-
+        <!-- Cards de viagens -->
         <section class="card-section">
             <div class="card">
-                <img src="./imagens/Foz_do_Iguaçu.png" alt="Foz do Iguaçu" width="50%">
+                <img src="./imagens/Salvador.png" alt="Salvador">
+                <h2>De: São Paulo</h2>
+                <h2>Para: Salvador</h2>
+                <p>A partir de: R$ 84,90</p>
+                <button onclick="window.location.href='pag_login.html'">Comprar passagem</button>
+            </div>
+    
+            <div class="card">
+                <img src="./imagens/Foz_do_Iguaçu.png" alt="Foz do Iguaçu">
                 <h2>De: Sergipe</h2>
                 <h2>Para: Foz do Iguaçu</h2>
                 <p>A partir de: R$ 79,90</p>
-                <button type="submit" onclick="window.location.href='pag_login.html'">Comprar passagem</button>
-
+                <button onclick="window.location.href='pag_login.html'">Comprar passagem</button>
             </div>
-                </section>
-
-         <section class="card-section">
+    
             <div class="card">
-               <img src="./imagens/Rio_de_Janeiro.png" alt="Rio">
-               <h2>De: São Paulo</h2>
-               <h2>Para: Rio de Janeiro</h2>
-               <p>A partir de: R$ 59,90</p>
-               <button type="submit" onclick="window.location.href='pag_login.html'">Comprar passagem</button>
+                <img src="./imagens/Rio_de_Janeiro.png" alt="Rio de Janeiro">
+                <h2>De: São Paulo</h2>
+                <h2>Para: Rio de Janeiro</h2>
+                <p>A partir de: R$ 59,90</p>
+                <button onclick="window.location.href='pag_login.html'">Comprar passagem</button>
+            </div>
 
-              </div>
-            </section>   
+            <div class="card">
+                <img src="./imagens/Pernambuco.png" alt="Pernambuco">
+                <h2>De: Minas Gerais</h2>
+                <h2>Para: Pernambuco</h2>
+                <p>A partir de: R$ 110,90</p>
+                <button onclick="window.location.href='pag_login.html'">Comprar passagem</button>
+            </div>
+
+            
+        </section>
+
+        <!-- Seção 'Sobre Nós' -->
+        <section class="sobre-nos" style="background-color: #f0f0f0;">
+            <h2 style="text-align: center;">SOBRE NÓS<h2>
+                <p>
+                    A Viação Calango é uma empresa promissora de transporte interestadual via ônibus. 
+                    Mesmo sendo recente, a empresa já se destaca no mercado por sua frota moderna, equipe capacitada e serviços de qualidade, segurança e conforto.
+                    Com ampla cobertura de destinos, a Viação Calango busca priorizar a segurança em todas as suas operações e oferece um atendimento ao cliente exemplar.
+                    A empresa é uma opção confiável e eficiente para viagens de média e longa distância, proporcionando uma experiência agradável aos passageiros.
+
+                </p>
+
+                <p>
+                    Nossa empresa oferece aos seus clientes a conveniência do pagamento via Pix e compras no cartão de crédito em até 6x sem juros.
+                    Essa opção permite que os passageiros realizem transações financeiras de forma rápida e segura.
+                    Além disso, a empresa disponibiliza a compra de passagens online, proporcionando praticidade e comodidade aos seus clientes.
+                    Durante a viagem, os passageiros desfrutam de conforto, graças a uma frota moderna e bem equipada.
+                    A Viação Calango também se preocupa com a segurança, adotando medidas para garantir a integridade e confidencialidade dos dados dos seus clientes durante todo o processo de compra.
+
+                </p>
+        </section>
     </main>
 
     <footer>
-        <div class="container-footer">
-            <div class="logo">
-                <img src="imagens.png/calango.png" alt="Logo da Viação Calango">
-            </div>
-            <div class="payment">
-                <img src="imagens.png/bandeira-cartoes.png" alt="PayMee">
-                <img src="imagens.png/pix.png" alt="PIX">
-            </div>
-            <div class="contact">
-                <h2>Fale Conosco</h2>
-                <p>Qualquer Duvida é só ligar para (21) 96454-8559</p>
-                <p>Cancelamento ou mais informações: (21) 0800-312-7593</p>
-                <a href="https://www.instagram.com/viacaocalango/" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/viacaocalango/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 Viação Calango. Todos os direitos reservados.</p>
-            </div>
+        <div class="logo">
+            <img src="imagens/calango.png" alt="Logo da Viação Calango" style="width: 40px;">
+        </div>
+        <div class="payment">
+            <img src="imagens/paymee.png" alt="PayMee" style="width: 40px;">
+            <img src="imagens/logo_pix.png" alt="PIX" style="width: 40px;">
+        </div>
+        <div class="contact">
+            <h2>Fale Conosco</h2>
+            <p>Qualquer dúvida? Ligue: (21) 96454-8559</p>
+            <p>Cancelamentos: (21) 0800-312-7593</p>
+            <a href="https://www.instagram.com/viacaocalango/" target="_blank">Instagram</a> |
+            <a href="https://www.facebook.com/viacaocalango/" target="_blank">Facebook</a>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Viação Calango. Todos os direitos reservados.</p>
         </div>
     </footer>
 </body>
