@@ -3,8 +3,8 @@ session_start();
 
 // Conexão com o banco de dados
 $servername = "localhost";
-$username = "meu_usuario";
-$password = "minha_senha";
+$username = "root";
+$password = "";
 $dbname = "sistema_gerenciamento";  // Nome do banco de dados
 
 $conn = new mysqli($servername, $username, $password, $dbname);

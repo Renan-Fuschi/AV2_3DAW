@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username = "meu_usuario";
-$password = "minha_senha";
+$username = "root";
+$password = "";
 $dbname = "sistema_gerenciamento";
 
 // Conexão com o banco de dados
