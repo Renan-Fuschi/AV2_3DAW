@@ -71,7 +71,7 @@ $result = $conn->query("SELECT * FROM onibus");
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h2>Gerenciar Ônibus</h2>
+    <h2 style="color:white">Gerenciar Ônibus</h2>
     <form id="create-form">
         <input type="text" id="numero" placeholder="Número do ônibus" required>
         <input type="text" id="estado_atual" placeholder="Estado atual" required>

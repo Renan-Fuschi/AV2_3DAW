@@ -84,14 +84,14 @@ button:hover {
     margin: 10px 0;
 }
 
-.sobre-nos {
+.sobreNos {
         border: 1px solid #ddd;
         border-radius: 12px;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         text-align: center;
         padding: 15px;
         width: 250px;
-        background-color: white;
+        background-color: rgb(204, 54, 54);
 }
 
 #sobre-nos h2 {

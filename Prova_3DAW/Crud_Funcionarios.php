@@ -75,7 +75,7 @@ $result = $conn->query("SELECT * FROM funcionarios");
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h2>Gerenciar Funcionários</h2>
+    <h2 style="color:white">Gerenciar Funcionários</h2>
     <form id="create-form">
         <input type="text" id="codigo" placeholder="Código do funcionário" required>
         <input type="text" id="nome" placeholder="Nome do funcionário" required>
